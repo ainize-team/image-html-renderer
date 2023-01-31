@@ -1,0 +1,39 @@
+[tool.black]
+line-length = 119
+target-version = ["py39"]
+
+[tool.isort]
+ensure_newline_before_comments = true
+force_grid_wrap = 0
+include_trailing_comma = true
+
+line_length = 119
+lines_after_imports = 2
+multi_line_output = 3
+use_parentheses = true
+
+[tool.poetry]
+name = "Twitter Image HTML Render"
+version = "0.1.0"
+description = ""
+authors = ["Donghoon Baek <baek@comcom.ai>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.79.0"
+loguru = "^0.6.0"
+uvicorn = "^0.18.2"
+gunicorn = "^20.1.0"
+jinja2 = "3.1.2"
+httpx = "0.23.3"
+
+[tool.poetry.dev-dependencies]
+black = "^22.12.0"
+isort = "^5.11.4"
+flake8 = "^6.0.0"
+pre-commit = "^3.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
