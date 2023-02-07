@@ -5,7 +5,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from config import target_server_settings
-from utils import get_image_url
+from utils import get_image_url, get_prompt
 
 
 BASE_PATH = Path(__file__).resolve().parent.parent
@@ -17,6 +17,7 @@ router = APIRouter()
 @router.get("/text-to-art/{task_id}", response_class=HTMLResponse)
 async def generate_image_html(request: Request, task_id: str):
     img_url = await get_image_url(task_id)
+    prompt = await get_prompt(task_id)
     if img_url is None:
         raise HTTPException(status_code=404, detail="task_id is not found")
 
@@ -24,5 +25,5 @@ async def generate_image_html(request: Request, task_id: str):
     og_url = f"https://{branch}-image-html-renderer-ainize-team.endpoint.ainize.ai/text-to-art/{task_id}"
 
     return templates.TemplateResponse(
-        "index.html", {"request": request, "task_id": task_id, "img_url": img_url, "og_url": og_url}
+        "index.html", {"request": request, "task_id": task_id, "img_url": img_url, "og_url": og_url, "prompt": prompt}
     )
