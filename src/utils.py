@@ -25,7 +25,7 @@ async def get_prompt(task_id: str) -> str:
             url = f"{target_server_settings.endpoint}/tasks/{task_id}/params"
             res = await client.get(url)
             data = res.json()
-            prompt = data["params"]["prompt"]
+            prompt = data["prompt"]
         except Exception as e:
             logger.error(f"error: {e}")
             return None
