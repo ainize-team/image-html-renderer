@@ -5,6 +5,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from config import target_server_settings
+from enums import AppEnvEnum
 from utils import get_image_url, get_prompt
 
 
@@ -22,7 +23,7 @@ async def generate_image_html(request: Request, task_id: str):
         raise HTTPException(status_code=404, detail="task_id is not found")
 
     og_url = f"https://aindao-text-to-art.ainetwork.xyz/{task_id}"
-    if target_server_settings.app_env == "dev":
+    if target_server_settings.app_env == AppEnvEnum.DEV:
         og_url = f"https://dev-aindao-text-to-art.ainetwork.xyz/{task_id}"
 
     return templates.TemplateResponse(
