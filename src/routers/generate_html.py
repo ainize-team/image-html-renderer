@@ -24,7 +24,7 @@ async def generate_image_html(request: Request, task_id: str):
 
     og_url = f"https://aindao-text-to-art.ainetwork.xyz/{task_id}"
     if target_server_settings.app_env == AppEnvEnum.DEV:
-        og_url = f"https://dev-aindao-text-to-art.ainetwork.xyz/{task_id}"
+        og_url = f"https://aindao-text-to-art-dev.ainetwork.xyz/{task_id}"
 
     return templates.TemplateResponse(
         "index.html", {"request": request, "task_id": task_id, "img_url": img_url, "og_url": og_url, "prompt": prompt}
